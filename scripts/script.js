@@ -47,8 +47,20 @@ const view = (() => {
         _cityElement.textContent = model.weather.name;
         _tempElement.textContent =
             model.weather.main.temp.toFixed(1) + "°" + (model.units === "imperial" ? "F" : "C");
-        _weatherElement.textContent = model.weather.weather[0].main;
+        _weatherElement.textContent = model.weather.weather[0].description;
     };
+
+    const _searchField = document.querySelector(".search-container");
+    const _searchBox = document.querySelector(".search-box");
+    const handleSearch = (e) => {
+        e.preventDefault();
+        model.currentCity = _searchBox.value;
+        controller
+            .updateWeatherData() //
+            .then(updateDisplay);
+        _searchField.reset();
+    };
+    _searchField.addEventListener("submit", handleSearch);
 
     const unitsButtons = document.querySelectorAll(".units-button");
     unitsButtons.forEach((btn) => {

@@ -4,24 +4,28 @@
 
 #### TO-DO NEXT
 
--   add search box to search for city
+-   implement geocoding API to translate city name or zip code into coordinates
+-   figure out layout
 
 #### TO-DO LATER
 
 ##### Features
 
--   figure out layout
 -   catch error if city doesn't exist
 -   add ability to search zip code
--   implement geocoding API to translate city name or zip code into coordinates
--   add API call after each keystroke to suggest other city via dropdown, but not if searching by zip code
+-   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
 -   implement localStorage to remember units and current city
+-   change background depending on weather
+-   change background depending on time of day
 
 ##### Behavior
 
 ##### Style
 
 #### DONE
+
+-   _0.0.2_
+-   add search box to search for city
 
 -   _0.0.1_
 -   write function to get data from API
