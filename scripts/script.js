@@ -55,9 +55,7 @@ const controller = (() => {
         model.currentCity = cityName;
     };
     const changeUnits = (system) => {
-        if (model.units !== system) {
-            model.units = system;
-        }
+        model.units = system;
     };
 
     return { updateWeatherData, changeCurrentCity, changeUnits, convertCityToCoords };
@@ -91,10 +89,12 @@ const view = (() => {
     const unitsButtons = document.querySelectorAll(".units-button");
     unitsButtons.forEach((btn) => {
         btn.addEventListener("mousedown", () => {
-            controller.changeUnits(btn.id);
-            controller
-                .updateWeatherData() //
-                .then(updateDisplay);
+            if (btn.id !== model.units) {
+                controller.changeUnits(btn.id);
+                controller
+                    .updateWeatherData() //
+                    .then(updateDisplay);
+            }
         });
     });
 

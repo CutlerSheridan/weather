@@ -23,6 +23,9 @@
 
 #### DONE
 
+-   _0.1.1_
+-   only execute units switch if units are going to change
+
 -   _0.1.0_
 -   implement geocoding API to translate city name into coordinates
 -   add model.currentCity variable to remember and display the input city name in case the coordinates slightly change the city name (such as "paris" changing to "palais-royal")
