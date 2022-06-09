@@ -1,0 +1,24 @@
+:root {
+    font-size: 62.5%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-family: inherit;
+}
+body {
+    margin: 3rem;
+    font-size: 2rem;
+}
+
+.temp-city {
+    text-transform: capitalize;
+}
+.search-error {
+    color: red;
+}
+.hidden {
+    visibility: hidden;
+}

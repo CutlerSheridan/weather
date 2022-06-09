@@ -4,14 +4,13 @@
 
 #### TO-DO NEXT
 
--   implement geocoding API to translate city name or zip code into coordinates
 -   figure out layout
 
 #### TO-DO LATER
 
 ##### Features
 
--   catch error if city doesn't exist
+-   implement geocoding API to translate ZIP into coordinates
 -   add ability to search zip code
 -   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
 -   implement localStorage to remember units and current city
@@ -23,6 +22,12 @@
 ##### Style
 
 #### DONE
+
+-   _0.1.0_
+-   implement geocoding API to translate city name into coordinates
+-   add model.currentCity variable to remember and display the input city name in case the coordinates slightly change the city name (such as "paris" changing to "palais-royal")
+-   catch and display error if city doesn't exist
+-   guard against uncaught errors in handleSearch() promise chain
 
 -   _0.0.2_
 -   add search box to search for city
