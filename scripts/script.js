@@ -52,9 +52,28 @@ const controller = (() => {
         model.currentCoords.lon = lon;
     };
     const changeCurrentCity = (cityName) => {
-        // let currentCity = cityName.toUpperCase().split(",");
         let currentCity = cityName.split(",");
         model.currentCity = currentCity[0];
+    };
+    const getDayPhase = () => {
+        // these are calculated using Unix time stamps, e.g. 3600 === one hour
+        const time = +model.weather.dt;
+        const sunrise = +model.weather.sys.sunrise;
+        const sunset = +model.weather.sys.sunset;
+        console.log(`time = ${time}`);
+        console.log(`sunrise = ${sunrise}`);
+        console.log(sunrise - time);
+        console.log(`sunset = ${sunset}`);
+        console.log(sunset - time);
+        if (time < sunrise || time > sunset) {
+            return "night";
+        } else if (time <= sunrise + 3600) {
+            return "sunrise";
+        } else if (time < sunset - 3600) {
+            return "day";
+        } else if (time >= sunset - 3600) {
+            return "sunset";
+        }
     };
     const changeUnits = (system) => {
         model.units = system;
@@ -71,6 +90,7 @@ const controller = (() => {
         changeUnits,
         convertCityToCoords,
         stringifyTemp,
+        getDayPhase,
     };
 })();
 
@@ -83,12 +103,64 @@ const view = (() => {
     const _lowTemp = document.querySelector(".main-low");
 
     const updateDisplay = () => {
+        const dayPhase = controller.getDayPhase();
+        changeBackgroundImg(dayPhase);
+        changeImgCredit(dayPhase);
+
         _cityElement.textContent = `${model.currentCity}, ${model.weather.sys.country}`;
         _tempElement.textContent = controller.stringifyTemp(model.weather.main.temp);
         _conditionIcon.src = `http://openweathermap.org/img/wn/${model.weather.weather[0].icon}@2x.png`;
         _conditionElement.textContent = model.weather.weather[0].description;
-        _highTemp.textContent = controller.stringifyTemp(model.weather.main.temp_max);
-        _lowTemp.textContent = controller.stringifyTemp(model.weather.main.temp_min);
+        _highTemp.textContent = " " + controller.stringifyTemp(model.weather.main.temp_max);
+        _lowTemp.textContent = " " + controller.stringifyTemp(model.weather.main.temp_min);
+    };
+    const backgroundImg = document.querySelector(".background-img");
+    const changeBackgroundImg = (dayPhase) => {
+        let newImgUrl = `../images/${dayPhase}.jpg`;
+        if (backgroundImg.style.backgroundImage !== `url("${newImgUrl}")`) {
+            backgroundImg.style.backgroundImage = `url("${newImgUrl}")`;
+        }
+        const body = document.body;
+        if (dayPhase === "day" || dayPhase === "sunset") {
+            body.classList.remove("body-textLight");
+            body.classList.add("body-textDark");
+        } else {
+            body.classList.remove("body-textDark");
+            body.classList.add("body-textLight");
+        }
+    };
+    const changeImgCredit = (dayPhase) => {
+        let newUrl;
+        let artist;
+        let siteUrl = "https://unsplash.com";
+        let siteName = "Unsplash";
+        switch (dayPhase) {
+            case "night":
+                newUrl =
+                    "https://unsplash.com/@phaelnogueira?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText";
+                artist = "Raphael Nogueira";
+                break;
+            case "sunrise":
+                newUrl =
+                    "https://unsplash.com/@jdiegoph?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText";
+                artist = "Diego PH";
+                break;
+            case "day":
+                newUrl =
+                    "https://unsplash.com/@mrsunburnt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText";
+                artist = "Xu Haiwei";
+                break;
+            case "sunset":
+                newUrl =
+                    "https://unsplash.com/es/@dewang?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText";
+                artist = "Dewang Gupta";
+        }
+        const nameElement = document.querySelector(".photoCredit-name");
+        const siteElement = document.querySelector(".photoCredit-site");
+        nameElement.href = newUrl;
+        nameElement.textContent = artist;
+        siteElement.href = siteUrl;
+        siteElement.textContent = siteName;
     };
 
     const _searchField = document.querySelector(".search-container");

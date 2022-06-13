@@ -10,6 +10,7 @@
 </head>
 
 <body class="body-textLight">
+    <div class="background-img"></div>
     <header>
         <button class="units-button units-button-active" id="imperial">°F</button>
         <button class="units-button" id="metric">°C</button>
@@ -20,13 +21,26 @@
     </header>
 
     <section class="main">
-        <div class="main-city">CITY</div>
+        <div class="main-city">City</div>
         <div class="main-temp">XX°Y</div>
         <img class="main-conditionIcon" src="http://openweathermap.org/img/wn/02n@2x.png" alt="">
-        <div class="main-conditionDesc">CONDITION</div>
-        <div class="main-tempBoundLabel main-highLabel">High: <div class="main-tempBound main-high">XX°Y</div></div>
-        <div class="main-tempBoundLabel main-lowLabel">Low: <div class="main-tempBound main-low">XX°Y</div></div>
+        <div class="main-conditionDesc">Condition</div>
+        <div class="main-tempBoundGrid">
+            <div class="main-tempBoundLabel main-highLabel">High:</div>
+            <div class="main-tempBound main-high">XX°Y</div>
+            <div class="main-tempBoundLabel main-lowLabel">Low:</div>
+            <div class="main-tempBound main-low">XX°Y</div>
+        </div>
     </section>
+
+    <footer>
+        <div class="credit photoCredit">Photo by <a class="photoCredit-name" href="#">John Smith</a> on <a
+                class="photoCredit-site" href="#">Unsplash</a>
+        </div>
+        <div class="credit siteCredit">Site made by
+            <a class="siteCredit-name" href="#">Cutler Sheridan</a>
+        </div>
+    </footer>
 
     <script src="scripts/script.js"></script>
 </body>

@@ -4,9 +4,6 @@
 
 #### TO-DO NEXT
 
--   calculate time phase of day
--   pull appropriate background pic for time of day
-
 #### TO-DO LATER
 
 ##### Features
@@ -16,7 +13,6 @@
 -   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
 -   implement localStorage to remember units and current city
 -   change background depending on weather
--   change background depending on time of day
 
 ##### Behavior
 
@@ -26,10 +22,16 @@
 -   add today hourly
 -   add week predictions
 -   add OpenWeather attribution
--   add credit
+-   add site credit
 -   add single-color icons for app to use that correlate with icons from OpenWeather
 
 #### DONE
+
+_0.3.0_
+
+-   write function to calculate time phase of day
+-   pull appropriate background pic for time of day
+-   add photo credit attribute
 
 _0.2.1_
 
