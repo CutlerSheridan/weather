@@ -20,8 +20,20 @@
 ##### Behavior
 
 ##### Style
+- add OpenWeather attribute
+- add credit 
+- add single-color icons for app to use that correlate with icons from OpenWeather
 
 #### DONE
+- *0.2.0*
+- fix empty decimal showing up in temperature
+- move units buttons and search bar to header
+- make active class switch to clicked units button
+- make condition icon appear upon search
+- make day's high and low populate
+- blur search box after submitting search if search is valid
+- add body classes for light vs dark text
+- play with font size styling
 
 -   _0.1.1_
 -   only execute units switch if units are going to change
@@ -39,6 +51,5 @@
 -   write function to get data from API
 -   write function to switch between celsius and fahrenheit
 
--   _0.0.0_
-
--Initial commit
+_0.0.0_
+- Initial commit

@@ -9,18 +9,24 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body>
-    <div class="temp-weatherIntro">Current weather in <span class="temp-city">PLACEHOLDER</span> is <span
-            class="temp-temp">TEMP</span>.</div>
-    <div class="temp-weatherIntro">It is <span class="temp-weather">WEATHERING</span>.</div>
+<body class="body-textLight">
+    <header>
+        <button class="units-button units-button-active" id="imperial">°F</button>
+        <button class="units-button" id="metric">°C</button>
+        <form class="search-container" action="">
+            <input class="search-box" placeholder="City or ZIP code" type="text">
+            <div class="search-error hidden">No matching city or ZIP code</div>
+        </form>
+    </header>
 
-    <form class="search-container" action="">
-        <input class="search-box" placeholder="City or ZIP code" type="text">
-        <div class="search-error hidden">No matching city or ZIP code</div>
-    </form>
-
-    <button class="units-button units-button-active" id="imperial">°F</button>
-    <button class="units-button" id="metric">°C</button>
+    <section class="main">
+        <div class="main-city">CITY</div>
+        <div class="main-temp">XX°Y</div>
+        <img class="main-conditionIcon" src="http://openweathermap.org/img/wn/02n@2x.png" alt="">
+        <div class="main-conditionDesc">CONDITION</div>
+        <div class="main-tempBoundLabel main-highLabel">High: <div class="main-tempBound main-high">XX°Y</div></div>
+        <div class="main-tempBoundLabel main-lowLabel">Low: <div class="main-tempBound main-low">XX°Y</div></div>
+    </section>
 
     <script src="scripts/script.js"></script>
 </body>

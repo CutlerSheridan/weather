@@ -57,20 +57,37 @@ const controller = (() => {
     const changeUnits = (system) => {
         model.units = system;
     };
+    const stringifyTemp = (temp) => {
+        let tempString = parseFloat(temp.toFixed(1));
+        tempString += "°" + (model.units === "imperial" ? "F" : "C");
+        return tempString;
+    }
 
-    return { updateWeatherData, changeCurrentCity, changeUnits, convertCityToCoords };
+    return { 
+        updateWeatherData,
+        changeCurrentCity,
+        changeUnits,
+        convertCityToCoords,
+        stringifyTemp,
+    };
 })();
 
 const view = (() => {
-    const _cityElement = document.querySelector(".temp-city");
-    const _tempElement = document.querySelector(".temp-temp");
-    const _weatherElement = document.querySelector(".temp-weather");
+    const _cityElement = document.querySelector(".main-city");
+    const _tempElement = document.querySelector(".main-temp");
+    const _conditionIcon = document.querySelector(".main-conditionIcon");
+    const _conditionElement = document.querySelector(".main-conditionDesc");
+    const _highTemp = document.querySelector(".main-high");
+    const _lowTemp = document.querySelector(".main-low");
 
     const updateDisplay = () => {
         _cityElement.textContent = model.currentCity;
         _tempElement.textContent =
-            model.weather.main.temp.toFixed(1) + "°" + (model.units === "imperial" ? "F" : "C");
-        _weatherElement.textContent = model.weather.weather[0].description;
+            controller.stringifyTemp(model.weather.main.temp);
+        _conditionIcon.src = `http://openweathermap.org/img/wn/${model.weather.weather[0].icon}@2x.png`
+        _conditionElement.textContent = model.weather.weather[0].description;
+        _highTemp.textContent = controller.stringifyTemp(model.weather.main.temp_max);
+        _lowTemp.textContent = controller.stringifyTemp(model.weather.main.temp_min);
     };
 
     const _searchField = document.querySelector(".search-container");
@@ -82,6 +99,7 @@ const view = (() => {
             .then(controller.updateWeatherData)
             .then(updateDisplay)
             .then(_searchField.reset())
+            .then(() => _searchBox.blur())
             .catch((err) => console.log(err));
     };
     _searchField.addEventListener("submit", handleSearch);
@@ -94,6 +112,9 @@ const view = (() => {
                 controller
                     .updateWeatherData() //
                     .then(updateDisplay);
+                for (let i = 0; i < 2; i++) {
+                    unitsButtons[i].classList.toggle("units-button-active");
+                }
             }
         });
     });
