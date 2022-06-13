@@ -52,7 +52,9 @@ const controller = (() => {
         model.currentCoords.lon = lon;
     };
     const changeCurrentCity = (cityName) => {
-        model.currentCity = cityName;
+        // let currentCity = cityName.toUpperCase().split(",");
+        let currentCity = cityName.split(",");
+        model.currentCity = currentCity[0];
     };
     const changeUnits = (system) => {
         model.units = system;
@@ -61,9 +63,9 @@ const controller = (() => {
         let tempString = parseFloat(temp.toFixed(1));
         tempString += "°" + (model.units === "imperial" ? "F" : "C");
         return tempString;
-    }
+    };
 
-    return { 
+    return {
         updateWeatherData,
         changeCurrentCity,
         changeUnits,
@@ -81,10 +83,9 @@ const view = (() => {
     const _lowTemp = document.querySelector(".main-low");
 
     const updateDisplay = () => {
-        _cityElement.textContent = model.currentCity;
-        _tempElement.textContent =
-            controller.stringifyTemp(model.weather.main.temp);
-        _conditionIcon.src = `http://openweathermap.org/img/wn/${model.weather.weather[0].icon}@2x.png`
+        _cityElement.textContent = `${model.currentCity}, ${model.weather.sys.country}`;
+        _tempElement.textContent = controller.stringifyTemp(model.weather.main.temp);
+        _conditionIcon.src = `http://openweathermap.org/img/wn/${model.weather.weather[0].icon}@2x.png`;
         _conditionElement.textContent = model.weather.weather[0].description;
         _highTemp.textContent = controller.stringifyTemp(model.weather.main.temp_max);
         _lowTemp.textContent = controller.stringifyTemp(model.weather.main.temp_min);

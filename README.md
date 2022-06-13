@@ -4,7 +4,8 @@
 
 #### TO-DO NEXT
 
--   figure out layout
+-   calculate time phase of day
+-   pull appropriate background pic for time of day
 
 #### TO-DO LATER
 
@@ -20,36 +21,51 @@
 ##### Behavior
 
 ##### Style
-- add OpenWeather attribute
-- add credit 
-- add single-color icons for app to use that correlate with icons from OpenWeather
+
+-   add more today details
+-   add today hourly
+-   add week predictions
+-   add OpenWeather attribution
+-   add credit
+-   add single-color icons for app to use that correlate with icons from OpenWeather
 
 #### DONE
-- *0.2.0*
-- fix empty decimal showing up in temperature
-- move units buttons and search bar to header
-- make active class switch to clicked units button
-- make condition icon appear upon search
-- make day's high and low populate
-- blur search box after submitting search if search is valid
-- add body classes for light vs dark text
-- play with font size styling
 
--   _0.1.1_
+_0.2.1_
+
+-   make searches split by "," and only use first array element as stored city name (so if user searches "manchester, us" it displays as "manchester" but shows the one in the us instead of the uk)
+
+_0.2.0_
+
+-   fix empty decimal showing up in temperature
+-   move units buttons and search bar to header
+-   make active class switch to clicked units button
+-   make condition icon appear upon search
+-   make day's high and low populate
+-   blur search box after submitting search if search is valid
+-   add body classes for light vs dark text
+-   play with font size styling
+
+_0.1.1_
+
 -   only execute units switch if units are going to change
 
--   _0.1.0_
+_0.1.0_
+
 -   implement geocoding API to translate city name into coordinates
 -   add model.currentCity variable to remember and display the input city name in case the coordinates slightly change the city name (such as "paris" changing to "palais-royal")
 -   catch and display error if city doesn't exist
 -   guard against uncaught errors in handleSearch() promise chain
 
--   _0.0.2_
+_0.0.2_
+
 -   add search box to search for city
 
--   _0.0.1_
+_0.0.1_
+
 -   write function to get data from API
 -   write function to switch between celsius and fahrenheit
 
 _0.0.0_
-- Initial commit
+
+-   Initial commit
