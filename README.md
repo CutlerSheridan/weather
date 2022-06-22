@@ -4,8 +4,6 @@
 
 #### TO-DO NEXT
 
--   add material icons for weather symbols
-
 #### TO-DO LATER
 
 ##### Features
@@ -28,6 +26,10 @@
 -   add single-color icons for app to use that correlate with icons from OpenWeather
 
 #### DONE
+
+_0.4.0_
+
+-   add material icons for weather symbols
 
 _0.3.1_
 

@@ -109,7 +109,7 @@ const view = (() => {
 
         _cityElement.textContent = `${model.currentCity}, ${model.weather.sys.country}`;
         _tempElement.textContent = controller.stringifyTemp(model.weather.main.temp);
-        _conditionIcon.src = `http://openweathermap.org/img/wn/${model.weather.weather[0].icon}@2x.png`;
+        _conditionIcon.textContent = _getWeatherIcon(model.weather.weather[0].icon);
         _conditionElement.textContent = model.weather.weather[0].description;
         _highTemp.textContent = " " + controller.stringifyTemp(model.weather.main.temp_max);
         _lowTemp.textContent = " " + controller.stringifyTemp(model.weather.main.temp_min);
@@ -161,6 +161,49 @@ const view = (() => {
         nameElement.textContent = artist;
         siteElement.href = siteUrl;
         siteElement.textContent = siteName;
+    };
+    const _getWeatherIcon = (iconCode) => {
+        let ligature;
+        switch (iconCode) {
+            case "01d":
+                ligature = "sunny";
+                break;
+            case "01n":
+                ligature = "dark_mode";
+                break;
+            case "02d":
+            case "03d":
+                ligature = "partly_cloudy_day";
+                break;
+            case "02n":
+            case "03n":
+                ligature = "partly_cloudy_night";
+                break;
+            case "04d":
+            case "04n":
+                ligature = "cloudy";
+                break;
+            case "09d":
+            case "09n":
+            case "10d":
+            case "10n":
+                ligature = "rainy";
+                break;
+            case "11d":
+            case "11n":
+                ligature = "thunderstorm";
+                break;
+            case "13d":
+            case "13n":
+                ligature = "ac_unit";
+                break;
+            case "50d":
+            case "50n":
+                ligature = "waves";
+                break;
+        }
+
+        return ligature;
     };
 
     const _searchField = document.querySelector(".search-container");
