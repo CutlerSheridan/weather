@@ -4,6 +4,8 @@
 
 #### TO-DO NEXT
 
+-   add material icons for weather symbols
+
 #### TO-DO LATER
 
 ##### Features
@@ -26,6 +28,10 @@
 -   add single-color icons for app to use that correlate with icons from OpenWeather
 
 #### DONE
+
+_0.3.1_
+
+-   improve handleSearch() promise chain
 
 _0.3.0_
 

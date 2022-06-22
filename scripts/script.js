@@ -171,7 +171,13 @@ const view = (() => {
             .convertCityToCoords(_searchBox.value) //
             .then(controller.updateWeatherData)
             .then(updateDisplay)
-            .then(_searchField.reset())
+            .then(
+                () => _searchField.reset(),
+                (err) => {
+                    _searchField.reset();
+                    return Promise.reject(err);
+                }
+            )
             .then(() => _searchBox.blur())
             .catch((err) => console.log(err));
     };

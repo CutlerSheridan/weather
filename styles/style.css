@@ -17,10 +17,10 @@ body {
     color: var(--text-clr);
 }
 .body-textLight {
-    --text-clr: white;
+    --text-clr: rgb(255, 255, 255);
 }
 .body-textDark {
-    --text-clr: black;
+    --text-clr: rgb(0, 0, 0);
 }
 a {
     color: var(--text-clr);
