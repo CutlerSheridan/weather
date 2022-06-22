@@ -4,15 +4,14 @@
 
 #### TO-DO NEXT
 
+-   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
+
 #### TO-DO LATER
 
 ##### Features
 
--   implement geocoding API to translate ZIP into coordinates
--   add ability to search zip code
--   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
+-   improve initial page behavior
 -   implement localStorage to remember units and current city
--   change background depending on weather
 
 ##### Behavior
 
@@ -22,10 +21,13 @@
 -   add today hourly
 -   add week predictions
 -   add OpenWeather attribution
--   add site credit
--   add single-color icons for app to use that correlate with icons from OpenWeather
 
 #### DONE
+
+_0.5.0_
+
+-   implement geocoding API to translate ZIP into coordinates
+-   make ZIP searches pull the city name
 
 _0.4.0_
 
@@ -40,6 +42,7 @@ _0.3.0_
 -   write function to calculate time phase of day
 -   pull appropriate background pic for time of day
 -   add photo credit attribute
+-   add site credit
 
 _0.2.1_
 

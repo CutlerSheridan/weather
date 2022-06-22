@@ -30,15 +30,31 @@ const controller = (() => {
         const errorElement = document.querySelector(".search-error");
 
         try {
-            const response = await fetch(
-                `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${apiKey}`
-            );
+            let response;
+            const zipRegex = new RegExp("\\d{5}");
+            if (zipRegex.test(searchTerm)) {
+                response = await fetch(
+                    `http://api.openweathermap.org/geo/1.0/zip?zip=${searchTerm}&appid=${apiKey}`
+                );
+                console.log("zip if reached");
+            } else {
+                response = await fetch(
+                    `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${apiKey}`
+                );
+            }
             const cityData = await response.json();
+            console.log(`cityData =`);
+            console.log(cityData);
 
-            if (cityData.length > 0) {
-                _changeCurrentCoords({ lat: cityData[0].lat, lon: cityData[0].lon });
+            if (cityData.length || cityData.lat) {
+                if (cityData.length) {
+                    _changeCurrentCoords({ lat: cityData[0].lat, lon: cityData[0].lon });
+                    changeCurrentCity(searchTerm);
+                } else {
+                    _changeCurrentCoords({ lat: cityData.lat, lon: cityData.lon });
+                    changeCurrentCity(cityData.name);
+                }
                 errorElement.classList.add("hidden");
-                changeCurrentCity(searchTerm);
             } else {
                 errorElement.classList.remove("hidden");
                 return Promise.reject("Not a valid city or ZIP code");
