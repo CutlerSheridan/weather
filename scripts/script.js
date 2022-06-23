@@ -31,20 +31,17 @@ const controller = (() => {
 
         try {
             let response;
-            const zipRegex = new RegExp("\\d{5}");
+            const zipRegex = new RegExp("^\\d{5}$");
             if (zipRegex.test(searchTerm)) {
                 response = await fetch(
                     `http://api.openweathermap.org/geo/1.0/zip?zip=${searchTerm}&appid=${apiKey}`
                 );
-                console.log("zip if reached");
             } else {
                 response = await fetch(
                     `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${apiKey}`
                 );
             }
             const cityData = await response.json();
-            console.log(`cityData =`);
-            console.log(cityData);
 
             if (cityData.length || cityData.lat) {
                 if (cityData.length) {
@@ -115,8 +112,8 @@ const view = (() => {
     const _tempElement = document.querySelector(".main-temp");
     const _conditionIcon = document.querySelector(".main-conditionIcon");
     const _conditionElement = document.querySelector(".main-conditionDesc");
-    const _highTemp = document.querySelector(".main-high");
-    const _lowTemp = document.querySelector(".main-low");
+    const _cloudiness = document.querySelector(".main-clouds");
+    const _windSpeed = document.querySelector(".main-wind");
 
     const updateDisplay = () => {
         const dayPhase = controller.getDayPhase();
@@ -127,8 +124,10 @@ const view = (() => {
         _tempElement.textContent = controller.stringifyTemp(model.weather.main.temp);
         _conditionIcon.textContent = _getWeatherIcon(model.weather.weather[0].icon);
         _conditionElement.textContent = model.weather.weather[0].description;
-        _highTemp.textContent = " " + controller.stringifyTemp(model.weather.main.temp_max);
-        _lowTemp.textContent = " " + controller.stringifyTemp(model.weather.main.temp_min);
+        _cloudiness.textContent = model.weather.clouds.all;
+        _windSpeed.textContent = model.weather.wind.speed;
+        _windSpeed.classList.remove("main-wind-imperial", "main-wind-metric");
+        _windSpeed.classList.add(`main-wind-${model.units}`);
     };
     const backgroundImg = document.querySelector(".background-img");
     const changeBackgroundImg = (dayPhase) => {

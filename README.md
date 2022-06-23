@@ -10,10 +10,13 @@
 
 ##### Features
 
+-   add loading icon upon entering search?
 -   improve initial page behavior
 -   implement localStorage to remember units and current city
 
 ##### Behavior
+
+-   test if any problems occur changing temp units before conducting a search (won't be a problem if it auto-searches something)
 
 ##### Style
 
@@ -23,6 +26,14 @@
 -   add OpenWeather attribution
 
 #### DONE
+
+_0.5.1_
+
+-   remove temp high and low as the API is actually saying the highest and lowest possible temperature _at the present moment in the current location_
+-   replace with cloud coverage and wind speed
+-   make units swapping dynamically replace wind speed units
+-   make air info units a little smaller than values
+-   properly align air info units
 
 _0.5.0_
 

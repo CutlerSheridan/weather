@@ -100,24 +100,42 @@ header {
     font-size: 3.6rem;
     text-transform: capitalize;
 }
-.main-tempBoundGrid {
+.main-airInfoGrid {
     display: grid;
     grid-template-columns: max-content max-content;
-    align-items: end;
+    align-items: center;
     column-gap: 0.8rem;
     row-gap: 0.3rem;
 }
-.main-tempBoundLabel {
-    font-size: 2rem;
+.main-airInfoLabel {
+    font-size: 3.3rem;
+    overflow: hidden;
 }
-.main-tempBound {
+.main-airInfo {
+    display: flex;
+    align-items: flex-end;
     font-size: 2.6rem;
+}
+.main-airInfo::after {
+    margin-left: 0.3rem;
+    font-size: 2.2rem;
+}
+.main-clouds::after {
+    content: "%";
+}
+.main-wind-imperial::after {
+    content: "mph";
+}
+.main-wind-metric::after {
+    content: "m/s";
+    letter-spacing: 0.13rem;
 }
 /* MAIN SECTION END */
 
 /* FOOTER START */
 footer {
     position: absolute;
+    left: 1.5rem;
     bottom: 1rem;
     font-size: 1.4rem;
     font-weight: 350;
