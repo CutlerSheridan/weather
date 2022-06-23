@@ -10,7 +10,6 @@
 
 ##### Features
 
--   add loading icon upon entering search?
 -   improve initial page behavior
 -   implement localStorage to remember units and current city
 
@@ -20,12 +19,14 @@
 
 ##### Style
 
--   add more today details
--   add today hourly
--   add week predictions
 -   add OpenWeather attribution
 
 #### DONE
+
+_0.5.2_
+
+-   add loading overlay that disappears upon background image load
+-   fix loading text so it remains a consistent color even if new background dictates a different text color
 
 _0.5.1_
 

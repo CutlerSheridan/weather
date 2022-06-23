@@ -131,9 +131,16 @@ const view = (() => {
     };
     const backgroundImg = document.querySelector(".background-img");
     const changeBackgroundImg = (dayPhase) => {
-        let newImgUrl = `../images/${dayPhase}.jpg`;
+        const newImgUrl = `../images/${dayPhase}.jpg`;
         if (backgroundImg.style.backgroundImage !== `url("${newImgUrl}")`) {
+            const img = new Image();
             backgroundImg.style.backgroundImage = `url("${newImgUrl}")`;
+            img.addEventListener("load", () => {
+                _loadingOverlay.classList.remove("loading-overlay-active");
+            });
+            img.src = newImgUrl;
+        } else {
+            _loadingOverlay.classList.remove("loading-overlay-active");
         }
         const body = document.body;
         if (dayPhase === "day" || dayPhase === "sunset") {
@@ -223,8 +230,13 @@ const view = (() => {
 
     const _searchField = document.querySelector(".search-container");
     const _searchBox = document.querySelector(".search-box");
+    const _loadingOverlay = document.querySelector(".loading-overlay");
     const handleSearch = (e) => {
         e.preventDefault();
+        _loadingOverlay.classList.add("loading-overlay-active");
+        const textColor = document.querySelector("body").style.color;
+        _loadingOverlay.style.color = textColor;
+
         controller
             .convertCityToCoords(_searchBox.value) //
             .then(controller.updateWeatherData)
@@ -240,6 +252,10 @@ const view = (() => {
             .catch((err) => console.log(err));
     };
     _searchField.addEventListener("submit", handleSearch);
+
+    backgroundImg.addEventListener("load", () => {
+        _loadingOverlay.classList.remove("loading-overlay-active");
+    });
 
     const unitsButtons = document.querySelectorAll(".units-button");
     unitsButtons.forEach((btn) => {

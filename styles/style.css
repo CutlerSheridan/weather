@@ -40,7 +40,27 @@ a {
     background-position: center;
     z-index: -1;
 }
-
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(33, 33, 33, 0.5);
+    visibility: hidden;
+    opacity: 0%;
+    transition: all 0.2s;
+}
+.loading-overlay-active {
+    visibility: visible;
+    opacity: 100%;
+}
+.loading-text {
+    font-size: 5rem;
+}
 /* HEADER START */
 header {
     margin-bottom: 1rem;
