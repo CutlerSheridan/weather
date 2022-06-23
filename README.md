@@ -23,6 +23,12 @@
 
 #### DONE
 
+_0.6.0_
+
+-   make loading overlay disappear after rejected searches too
+-   fix loading text color consistency (for real this time)
+-   add local time and date to results
+
 _0.5.2_
 
 -   add loading overlay that disappears upon background image load

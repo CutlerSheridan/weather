@@ -112,6 +112,7 @@ const view = (() => {
     const _tempElement = document.querySelector(".main-temp");
     const _conditionIcon = document.querySelector(".main-conditionIcon");
     const _conditionElement = document.querySelector(".main-conditionDesc");
+    const _dateTime = document.querySelector(".main-time");
     const _cloudiness = document.querySelector(".main-clouds");
     const _windSpeed = document.querySelector(".main-wind");
 
@@ -124,6 +125,7 @@ const view = (() => {
         _tempElement.textContent = controller.stringifyTemp(model.weather.main.temp);
         _conditionIcon.textContent = _getWeatherIcon(model.weather.weather[0].icon);
         _conditionElement.textContent = model.weather.weather[0].description;
+        _dateTime.textContent = _calculateDateTime(model.weather.timezone);
         _cloudiness.textContent = model.weather.clouds.all;
         _windSpeed.textContent = model.weather.wind.speed;
         _windSpeed.classList.remove("main-wind-imperial", "main-wind-metric");
@@ -227,15 +229,36 @@ const view = (() => {
 
         return ligature;
     };
+    const _calculateDateTime = (timezoneShift) => {
+        const epoch = Math.floor(Date.now() / 1000);
+        const shiftedEpoch = epoch + timezoneShift;
+        const date = new Date(0);
+        date.setUTCSeconds(shiftedEpoch);
+        let dateString = `${date.getUTCHours()}:${date.getUTCMinutes()} on ${
+            _getWeekdays()[date.getUTCDay()]
+        }`;
+        console.log(dateString);
+        return dateString;
+    };
+    const _getWeekdays = () => {
+        let baseDate = new Date(Date.UTC(2017, 0, 2)); // a random monday
+        let weekdays = [];
+        for (let i = 0; i < 7; i++) {
+            weekdays.push(baseDate.toLocaleString(navigator.language, { weekday: "long" }));
+            baseDate.setDate(baseDate.getDate() + 1);
+        }
+        return weekdays;
+    };
 
     const _searchField = document.querySelector(".search-container");
     const _searchBox = document.querySelector(".search-box");
     const _loadingOverlay = document.querySelector(".loading-overlay");
     const handleSearch = (e) => {
         e.preventDefault();
-        _loadingOverlay.classList.add("loading-overlay-active");
-        const textColor = document.querySelector("body").style.color;
+        const body = document.querySelector("body");
+        const textColor = getComputedStyle(body).getPropertyValue("color");
         _loadingOverlay.style.color = textColor;
+        _loadingOverlay.classList.add("loading-overlay-active");
 
         controller
             .convertCityToCoords(_searchBox.value) //
@@ -249,13 +272,12 @@ const view = (() => {
                 }
             )
             .then(() => _searchBox.blur())
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                _loadingOverlay.classList.remove("loading-overlay-active");
+                console.log(err);
+            });
     };
     _searchField.addEventListener("submit", handleSearch);
-
-    backgroundImg.addEventListener("load", () => {
-        _loadingOverlay.classList.remove("loading-overlay-active");
-    });
 
     const unitsButtons = document.querySelectorAll(".units-button");
     unitsButtons.forEach((btn) => {

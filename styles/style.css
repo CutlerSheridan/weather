@@ -35,7 +35,6 @@ a {
     left: 0;
     height: 100vh;
     width: 100vw;
-    /* background-image: url("../images/night.jpg"); */
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -52,7 +51,7 @@ a {
     background: rgb(33, 33, 33, 0.5);
     visibility: hidden;
     opacity: 0%;
-    transition: all 0.2s;
+    transition: opacity 0.2s;
 }
 .loading-overlay-active {
     visibility: visible;
@@ -61,6 +60,7 @@ a {
 .loading-text {
     font-size: 5rem;
 }
+
 /* HEADER START */
 header {
     margin-bottom: 1rem;
@@ -71,13 +71,14 @@ header {
     -webkit-appearance: none;
     margin-right: 1rem;
     padding: 1.2rem 0.7rem 0.3rem 0.7rem;
+    font-weight: bold;
     border: none;
     background: none;
     cursor: pointer;
     color: var(--text-clr);
 }
 .units-button-active {
-    border-bottom: 2px solid var(--text-clr);
+    border-bottom: 3px solid var(--text-clr);
 }
 .search-container {
     margin-left: 2rem;
@@ -116,9 +117,12 @@ header {
     overflow: hidden;
 }
 .main-conditionDesc {
-    margin-bottom: 1rem;
+    margin-bottom: 0.4rem;
     font-size: 3.6rem;
     text-transform: capitalize;
+}
+.main-time {
+    margin-bottom: 1.1rem;
 }
 .main-airInfoGrid {
     display: grid;
