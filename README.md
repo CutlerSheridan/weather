@@ -19,9 +19,12 @@
 
 ##### Style
 
--   add OpenWeather attribution
-
 #### DONE
+
+_0.6.1_
+
+-   fix time call so it doesn't read "10:3" if it's 10:03
+-   add OpenWeather attribution
 
 _0.6.0_
 

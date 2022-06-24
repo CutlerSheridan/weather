@@ -234,7 +234,8 @@ const view = (() => {
         const shiftedEpoch = epoch + timezoneShift;
         const date = new Date(0);
         date.setUTCSeconds(shiftedEpoch);
-        let dateString = `${date.getUTCHours()}:${date.getUTCMinutes()} on ${
+        const minutes = date.getUTCMinutes();
+        let dateString = `${date.getUTCHours()}:${minutes < 10 ? "0" + minutes : minutes} on ${
             _getWeekdays()[date.getUTCDay()]
         }`;
         console.log(dateString);
