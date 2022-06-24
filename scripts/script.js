@@ -40,11 +40,11 @@ const controller = (() => {
             const zipRegex = new RegExp("^\\d{5}$");
             if (zipRegex.test(searchTerm)) {
                 response = await fetch(
-                    `http://api.openweathermap.org/geo/1.0/zip?zip=${searchTerm}&appid=${apiKey}`
+                    `https://api.openweathermap.org/geo/1.0/zip?zip=${searchTerm}&appid=${apiKey}`
                 );
             } else {
                 response = await fetch(
-                    `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${apiKey}`
+                    `https://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${apiKey}`
                 );
             }
             const cityData = await response.json();
@@ -135,14 +135,14 @@ const view = (() => {
     };
     const backgroundImg = document.querySelector(".background-img");
     const changeBackgroundImg = (dayPhase) => {
-        const newImgUrl = `../images/${dayPhase}.jpg`;
+        const newImgUrl = `/images/${dayPhase}.jpg`;
         if (backgroundImg.style.backgroundImage !== `url("${newImgUrl}")`) {
             const img = new Image();
             backgroundImg.style.backgroundImage = `url("${newImgUrl}")`;
             img.addEventListener("load", () => {
                 _loadingOverlay.classList.remove("loading-overlay-active");
             });
-            img.src = `images/${dayPhase}.jpg`;
+            img.src = newImgUrl;
         } else {
             _loadingOverlay.classList.remove("loading-overlay-active");
         }

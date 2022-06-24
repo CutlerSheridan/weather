@@ -18,6 +18,11 @@
 
 #### DONE
 
+_1.0.1.2_
+
+-   attempt to fix image path
+-   change API calls to https
+
 _1.0.1.1_
 
 -   attempt to fix image path so it works on Github Pages
