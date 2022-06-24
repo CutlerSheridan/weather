@@ -25,6 +25,13 @@ const controller = (() => {
         const weatherData = await response.json();
         console.log(weatherData);
         model.weather = weatherData;
+        updateLocalStorage();
+    };
+    const updateLocalStorage = () => {
+        const dataToStore = ["currentCoords", "currentCity", "units"];
+        for (let i = 0; i < dataToStore.length; i++) {
+            localStorage.setItem(dataToStore[i], JSON.stringify(model[dataToStore[i]]));
+        }
     };
     const convertCityToCoords = async (searchTerm) => {
         const errorElement = document.querySelector(".search-error");
@@ -45,10 +52,10 @@ const controller = (() => {
 
             if (cityData.length || cityData.lat) {
                 if (cityData.length) {
-                    _changeCurrentCoords({ lat: cityData[0].lat, lon: cityData[0].lon });
+                    changeCurrentCoords({ lat: cityData[0].lat, lon: cityData[0].lon });
                     changeCurrentCity(searchTerm);
                 } else {
-                    _changeCurrentCoords({ lat: cityData.lat, lon: cityData.lon });
+                    changeCurrentCoords({ lat: cityData.lat, lon: cityData.lon });
                     changeCurrentCity(cityData.name);
                 }
                 errorElement.classList.add("hidden");
@@ -60,7 +67,7 @@ const controller = (() => {
             throw err;
         }
     };
-    const _changeCurrentCoords = ({ lat, lon }) => {
+    const changeCurrentCoords = ({ lat, lon }) => {
         model.currentCoords.lat = lat;
         model.currentCoords.lon = lon;
     };
@@ -88,8 +95,8 @@ const controller = (() => {
             return "sunset";
         }
     };
-    const changeUnits = (system) => {
-        model.units = system;
+    const changeUnits = (unitType) => {
+        model.units = unitType;
     };
     const stringifyTemp = (temp) => {
         let tempString = parseFloat(temp.toFixed(1));
@@ -99,6 +106,7 @@ const controller = (() => {
 
     return {
         updateWeatherData,
+        changeCurrentCoords,
         changeCurrentCity,
         changeUnits,
         convertCityToCoords,
@@ -294,6 +302,15 @@ const view = (() => {
             }
         });
     });
+
+    if (localStorage.getItem("currentCoords")) {
+        controller.changeCurrentCoords(JSON.parse(localStorage.getItem("currentCoords")));
+        controller.changeCurrentCity(JSON.parse(localStorage.getItem("currentCity")));
+        controller.changeUnits(JSON.parse(localStorage.getItem("units")));
+
+        controller.updateWeatherData().then(updateDisplay).catch(console.log);
+    } else {
+    }
 
     return { updateDisplay };
 })();

@@ -4,14 +4,14 @@
 
 #### TO-DO NEXT
 
--   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
+-   add loading screen to startup page
 
 #### TO-DO LATER
 
 ##### Features
 
--   improve initial page behavior
--   implement localStorage to remember units and current city
+-   auto-fill a city if localStorage is empty on startup
+-   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
 
 ##### Behavior
 
@@ -19,7 +19,13 @@
 
 ##### Style
 
+-   change search text color
+
 #### DONE
+
+_0.7.0_
+
+-   implement localStorage to remember units, current city, and current coords
 
 _0.6.1_
 
