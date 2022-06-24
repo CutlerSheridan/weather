@@ -18,6 +18,10 @@
 
 #### DONE
 
+_1.0.1.3_
+
+-   fix image path
+
 _1.0.1.2_
 
 -   attempt to fix image path

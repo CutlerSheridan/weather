@@ -135,7 +135,7 @@ const view = (() => {
     };
     const backgroundImg = document.querySelector(".background-img");
     const changeBackgroundImg = (dayPhase) => {
-        const newImgUrl = `/images/${dayPhase}.jpg`;
+        const newImgUrl = `./images/${dayPhase}.jpg`;
         if (backgroundImg.style.backgroundImage !== `url("${newImgUrl}")`) {
             const img = new Image();
             backgroundImg.style.backgroundImage = `url("${newImgUrl}")`;
