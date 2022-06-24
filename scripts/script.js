@@ -23,7 +23,6 @@ const controller = (() => {
             `https://api.openweathermap.org/data/2.5/weather?lat=${model.currentCoords.lat}&lon=${model.currentCoords.lon}&appid=${apiKey}&units=${model.units}`
         );
         const weatherData = await response.json();
-        console.log(weatherData);
         model.weather = weatherData;
         updateLocalStorage();
     };
@@ -80,11 +79,6 @@ const controller = (() => {
         const time = +model.weather.dt;
         const sunrise = +model.weather.sys.sunrise;
         const sunset = +model.weather.sys.sunset;
-        console.log(`time = ${time}`);
-        console.log(`sunrise = ${sunrise}`);
-        console.log(sunrise - time);
-        console.log(`sunset = ${sunset}`);
-        console.log(sunset - time);
         if (time < sunrise || time > sunset) {
             return "night";
         } else if (time <= sunrise + 3600) {
@@ -246,7 +240,6 @@ const view = (() => {
         let dateString = `${date.getUTCHours()}:${minutes < 10 ? "0" + minutes : minutes} on ${
             _getWeekdays()[date.getUTCDay()]
         }`;
-        console.log(dateString);
         return dateString;
     };
     const _getWeekdays = () => {
@@ -281,7 +274,6 @@ const view = (() => {
                 }
             )
             .then(() => _searchBox.blur())
-            .then(() => localStorage.clear())
             .catch((err) => {
                 _loadingOverlay.classList.remove("loading-overlay-active");
                 console.log(err);

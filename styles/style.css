@@ -1,6 +1,8 @@
 :root {
     --text-clr-light: rgb(255, 255, 255);
     --text-clr-dark: rgb(0, 0, 0);
+    --text-clr-midpoint-light: rgb(150, 150, 150);
+    --text-clr-midpoint-dark: rgb(93, 93, 93);
     background: black;
     font-size: 62.5%;
 }
@@ -24,9 +26,11 @@ body {
 }
 .body-textLight {
     --text-clr: var(--text-clr-light);
+    --text-clr-placeholder: var(--text-clr-midpoint-light);
 }
 .body-textDark {
     --text-clr: var(--text-clr-dark);
+    --text-clr-placeholder: var(--text-clr-midpoint-dark);
 }
 a {
     color: var(--text-clr);
@@ -70,9 +74,9 @@ a {
 
 /* HEADER START */
 header {
-    margin-bottom: 1rem;
+    margin-bottom: 2.7rem;
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
 }
 .units-button {
     -webkit-appearance: none;
@@ -80,30 +84,44 @@ header {
     padding: 1.2rem 0.7rem 0.3rem 0.7rem;
     font-weight: bold;
     border: none;
+    border-bottom: 3px solid transparent;
     background: none;
     cursor: pointer;
     color: var(--text-clr);
 }
 .units-button-active {
-    border-bottom: 3px solid var(--text-clr);
+    border-bottom-color: var(--text-clr);
 }
 .search-container {
     margin-left: 2rem;
-    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* padding-top: 1rem; */
+    border-bottom: 3px solid var(--text-clr);
+    border-radius: 0;
 }
 .search-box {
     padding: 0.2rem 0.5rem;
-    width: 100%;
+    width: 20.7rem;
     border: none;
-    border-bottom: 2px solid var(--text-clr);
-    border-radius: 0;
     color: var(--text-clr);
     background: none;
 }
+.search-box::placeholder {
+    color: var(--text-clr-placeholder);
+}
 .search-error {
+    position: relative;
+}
+.search-error::after {
+    content: "No matching city or ZIP code";
+    position: absolute;
+    left: 0;
+    top: 100%;
     margin-top: 0.6rem;
     font-size: 1.5rem;
-    color: red;
+    color: crimson;
 }
 .hidden {
     visibility: hidden;

@@ -4,23 +4,27 @@
 
 #### TO-DO NEXT
 
--   get rid of localStorage clearing after any search
-
 #### TO-DO LATER
 
 ##### Features
 
--   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
+-   add API call after each keystroke to suggest other city via dropdown
 
 ##### Behavior
 
--   clear out console.logs
-
 ##### Style
 
--   change search text color
+-   adjust styling for landscape on phone
 
 #### DONE
+
+_1.0.0_
+
+-   get rid of localStorage clearing after any search
+-   clear out console.logs
+-   adjust search bar styling and positioning
+-   reposition main section
+-   change search text color
 
 _0.7.2_
 
