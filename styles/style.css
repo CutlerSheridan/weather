@@ -1,4 +1,6 @@
 :root {
+    --text-clr-light: rgb(255, 255, 255);
+    --text-clr-dark: rgb(0, 0, 0);
     background: black;
     font-size: 62.5%;
 }
@@ -21,10 +23,10 @@ body {
     color: var(--text-clr);
 }
 .body-textLight {
-    --text-clr: rgb(255, 255, 255);
+    --text-clr: var(--text-clr-light);
 }
 .body-textDark {
-    --text-clr: rgb(0, 0, 0);
+    --text-clr: var(--text-clr-dark);
 }
 a {
     color: var(--text-clr);
@@ -48,7 +50,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(33, 33, 33, 0.5);
+    background: rgb(30, 30, 30, 0.5);
     visibility: hidden;
     opacity: 0%;
     transition: opacity 0.2s;
@@ -58,7 +60,12 @@ a {
     opacity: 100%;
 }
 .loading-text {
+    padding: 1.5rem;
     font-size: 5rem;
+    background: var(--text-clr-dark);
+    border: 3px solid var(--text-clr-light);
+    border-radius: 1rem;
+    color: var(--text-clr-light);
 }
 
 /* HEADER START */

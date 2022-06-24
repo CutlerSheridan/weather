@@ -4,24 +4,33 @@
 
 #### TO-DO NEXT
 
--   add loading screen to startup page
+-   get rid of localStorage clearing after any search
 
 #### TO-DO LATER
 
 ##### Features
 
--   auto-fill a city if localStorage is empty on startup
 -   add API call after each keystroke to suggest other city via dropdown, even if searching by zip code
 
 ##### Behavior
 
--   test if any problems occur changing temp units before conducting a search (won't be a problem if it auto-searches something)
+-   clear out console.logs
 
 ##### Style
 
 -   change search text color
 
 #### DONE
+
+_0.7.2_
+
+-   add loading screen to startup page
+-   make loading overlay prettier
+
+_0.7.1_
+
+-   fix units buttons to highlight the correct one on startup
+-   auto-fill Los Angeles info if localStorage is empty on startup
 
 _0.7.0_
 

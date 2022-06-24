@@ -281,6 +281,7 @@ const view = (() => {
                 }
             )
             .then(() => _searchBox.blur())
+            .then(() => localStorage.clear())
             .catch((err) => {
                 _loadingOverlay.classList.remove("loading-overlay-active");
                 console.log(err);
@@ -303,14 +304,22 @@ const view = (() => {
         });
     });
 
-    if (localStorage.getItem("currentCoords")) {
+    if (localStorage.getItem("currentCity")) {
         controller.changeCurrentCoords(JSON.parse(localStorage.getItem("currentCoords")));
         controller.changeCurrentCity(JSON.parse(localStorage.getItem("currentCity")));
         controller.changeUnits(JSON.parse(localStorage.getItem("units")));
-
-        controller.updateWeatherData().then(updateDisplay).catch(console.log);
     } else {
+        controller.changeUnits("imperial");
+        controller.changeCurrentCity("Los Angeles");
+        controller.changeCurrentCoords({ lat: 34.0536909, lon: -118.242766 });
     }
+    unitsButtons.forEach((btn) => {
+        if (btn.id === model.units) {
+            btn.classList.add("units-button-active");
+        }
+    });
+    _loadingOverlay.classList.add("loading-overlay-active");
+    controller.updateWeatherData().then(updateDisplay).catch(console.log);
 
     return { updateDisplay };
 })();
