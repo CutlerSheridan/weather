@@ -142,7 +142,7 @@ const view = (() => {
             img.addEventListener("load", () => {
                 _loadingOverlay.classList.remove("loading-overlay-active");
             });
-            img.src = newImgUrl;
+            img.src = `images/${dayPhase}.jpg`;
         } else {
             _loadingOverlay.classList.remove("loading-overlay-active");
         }

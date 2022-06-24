@@ -18,6 +18,10 @@
 
 #### DONE
 
+_1.0.1.1_
+
+-   attempt to fix image path so it works on Github Pages
+
 _1.0.1_
 
 -   make loading text slightly translucent
