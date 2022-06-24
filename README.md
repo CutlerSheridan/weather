@@ -1,6 +1,6 @@
 # WEATHER APP
 
-## Look up the weather forecast for any given city
+## Look up the current weather in any given city
 
 #### TO-DO NEXT
 
@@ -17,6 +17,11 @@
 -   adjust styling for landscape on phone
 
 #### DONE
+
+_1.0.1_
+
+-   make loading text slightly translucent
+-   edit README
 
 _1.0.0_
 
